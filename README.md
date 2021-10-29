@@ -107,3 +107,39 @@ for it in result:
     print(it.group("two"))
     print(it.group("three"))
 ```
+
+## 爬取豆瓣top250数据
+```
+import requests
+import re
+import csv
+
+for i in range(0, 275, 25):
+    url = f'https://movie.douban.com/top250?start={i}&filter='
+    print(i)
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '
+                      'Chrome/89.0.4389.90 Safari/537.36 Edg/89.0.774.54'}
+    resp = requests.get(url, headers=headers)
+    page_content = resp.text
+
+    # 解析数据
+    obj = re.compile(r'<li>.*?<div class="item">.*?<span class="title">(?P<name>.*?)</span>'
+                     r'.*?<p class="">.*?<br>(?P<year>.*?)&nbsp.*?<span class="rating_num" property="v:average">'
+                     r'(?P<score>.*?)</span>.*?<span>(?P<num>.*?)人评价</span>', re.S)
+    # 开始匹配
+    result = obj.finditer(page_content)
+    f = open('data.csv', mode='a+')
+    csvwriter = csv.writer(f)
+    for it in result:
+        # print(it.group('name'))
+        # print(it.group('year').strip())
+        # print(it.group('score'))
+        # print(it.group('num'))
+        dic = it.groupdict()
+        dic['year'] = dic['year'].strip()
+        csvwriter.writerow(dic.values())
+    f.close()
+print('over')
+
+```
