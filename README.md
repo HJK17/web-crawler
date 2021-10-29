@@ -138,3 +138,37 @@ for i in range(0, 275, 25):
 print('over')
 
 ```
+
+## bs4基本使用
+- pip install bs4
+- 拿到页面源代码
+- 使用bs4进行解析， 拿到数据
+
+```
+import requests
+from bs4 import BeautifulSoup
+
+
+url = "http://"
+resp = requests.get(url)
+
+# 解析数据
+# 1. 把页面代码交给BeautifulSoup进行处理，生成bs对象
+
+page = BeautifulSoup(resp.text, "html.parser") # 指定html解析器
+
+# 2. 从bs对象中查找数据
+# find(标签， 属性=值)
+# find_all(标签， 属性=值)
+# table = page.find("table", class_="hp_table") # class要写成class_ 
+
+table = page.find("table", attrs={"class": "hp_table"})
+
+# 拿到所有数据行
+trs = table.find_all("tr")[1:]
+for tr in trs:
+    tds = tr.find_all("td")
+    name = tds[0].text
+    print([name])
+
+```
