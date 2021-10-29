@@ -116,7 +116,6 @@ import csv
 
 for i in range(0, 275, 25):
     url = f'https://movie.douban.com/top250?start={i}&filter='
-    print(i)
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '
                       'Chrome/89.0.4389.90 Safari/537.36 Edg/89.0.774.54'}
@@ -132,10 +131,6 @@ for i in range(0, 275, 25):
     f = open('data.csv', mode='a+')
     csvwriter = csv.writer(f)
     for it in result:
-        # print(it.group('name'))
-        # print(it.group('year').strip())
-        # print(it.group('score'))
-        # print(it.group('num'))
         dic = it.groupdict()
         dic['year'] = dic['year'].strip()
         csvwriter.writerow(dic.values())
