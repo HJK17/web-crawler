@@ -212,6 +212,12 @@ result = tree.xpath(" /book/author/*/nick/text()")  # *任意的节点，通配�
 
 
 ```cython
-for i in range(10):
-    print(i)
+from lxml import etree
+
+
+tree = etree.parse( "b.html")  # result = tree.xpath('/html' )
+# result = tree.xpath("/html/body/ul/li/a/text()")
+# result = tree.xpath( "/html/body/ul/li[1]/a/text()")  # xpath是从1开始
+result = tree.xpath( "/html/body/ol/li/a[@href='xxx']")
+
 ```
