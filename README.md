@@ -172,3 +172,46 @@ for tr in trs:
     print([name])
 
 ```
+
+## xpath
+- xpath 是在XML文档中搜索内容的一门语言
+- html是xml的一个子集
+1. 安装lxml, pip install lxml
+2. xpath 解析
+
+```
+from lxml import etree
+
+
+xml = """
+<book>
+    <id>1</id>
+    <name>野花遍地香</name>
+    <price>1.23</price>
+    <nick>臭豆腐</nick>
+    <author>
+        <nick id=""10086">周大强</nick>
+        <nick id="10010"">周芷若</nick>
+        <nick class="joy">周杰伦</nick>
+        <nick class="jolin">蔡依林</nick>
+        <div>
+            <nick>热热热热热</nicke>
+        </div>
+    </author>
+</book>
+"""
+
+tree = etree. XML(xml)
+# result = tree.xpath("/book")  # /表示层级关系。第一个/是根节点
+#result = tree.xpath("/book/name")
+# result = tree.xpath("/book/name/text()"")
+# text()拿文本#result = tree.xpath( "/book/author//nick/text()")  # //后代
+result = tree.xpath(" /book/author/*/nick/text()")  # *任意的节点，通配符
+
+```
+
+
+```cython
+for i in range(10):
+    print(i)
+```
