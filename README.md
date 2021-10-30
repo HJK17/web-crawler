@@ -179,6 +179,7 @@ for tr in trs:
 1. 安装lxml, pip install lxml
 2. xpath 解析
 
+- **示例1**
 ```cython
 from lxml import etree
 
@@ -209,6 +210,10 @@ tree = etree. XML(xml)
 result = tree.xpath(" /book/author/*/nick/text()")  # *任意的节点，通配符
 
 ```
+
+- **b.html**
+
+
 ```html
 <html>
     <head>
@@ -228,6 +233,8 @@ result = tree.xpath(" /book/author/*/nick/text()")  # *任意的节点，通配�
 </html>
 ```
 
+
+- **示例2**
 ```cython
 from lxml import etree
 
@@ -237,6 +244,10 @@ tree = etree.parse( "b.html")  # result = tree.xpath('/html' )
 # result = tree.xpath( "/html/body/ul/li[1]/a/text()")  # xpath是从1开始
 result = tree.xpath( "/html/body/ol/li/a[@href='xxx']")  # @属性名能取值
 
+ol_li_list = tree.xpath("/html/body/ol/li")
 
+for li in ol_li_list:
+    result = li.xpath("./a/text()")  # 在li中继续去查找，相对查找
+    result2 = li.xpath("./a/@href")
 
 ```
