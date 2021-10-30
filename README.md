@@ -209,7 +209,24 @@ tree = etree. XML(xml)
 result = tree.xpath(" /book/author/*/nick/text()")  # *任意的节点，通配符
 
 ```
-
+```html
+<html>
+    <head>
+    <body>
+        <ul>
+            <li><a href="http://www.baidu.com">百度</a></li>
+            <li><a href="http://www.google.com">谷歌</a></li>
+            <li><a href="http://www.sogou.com">搜狗</a></li>
+        </ul>
+        <ol>
+            <li><a href="feiji">飞机</a></li>
+            <li><a href="dapao">大炮</a></li>
+            <li><a href="huoche">火车</a></li>
+        </ol>
+    </body>
+    </head>
+</html>
+```
 
 ```cython
 from lxml import etree
@@ -218,6 +235,8 @@ from lxml import etree
 tree = etree.parse( "b.html")  # result = tree.xpath('/html' )
 # result = tree.xpath("/html/body/ul/li/a/text()")
 # result = tree.xpath( "/html/body/ul/li[1]/a/text()")  # xpath是从1开始
-result = tree.xpath( "/html/body/ol/li/a[@href='xxx']")
+result = tree.xpath( "/html/body/ol/li/a[@href='xxx']")  # @属性名能取值
+
+
 
 ```
