@@ -95,7 +95,7 @@ s = """<div class='p'><span id='1'>Python</span></div>" \
     "<div class='j'><span id='2'>java</span></div>" \
     "<div class='c'><span id='3'>C</span></div>" \
     "<div class='G'><span id='4'>Golang</span></div>" \
-    "<div class='r'><span id='5'></span>rust</div>
+    "<div class='r'><span id='5'>rust</span></div>
     """
 
 # (?P<名字>正则表达式) 可以单独从正则匹配内容中进一步提取内容
