@@ -10,7 +10,7 @@
 - 安装 requests 
 - pip install requests
 
-```
+```cython
 import requests
 
 query = input("请输入你想查询的内容：")
@@ -55,7 +55,7 @@ print(resp.text)  # 拿到页面源代码
 12. +匹配前一个字符出现1次或者无限次，至少有1次
 
 ## Python re模块的使用
-```
+```cython
 import re
 
 # finditer: 匹配字符串中所有的内容[返回的是迭代器]，从迭代器中拿到的内容 需要.group()
@@ -109,7 +109,7 @@ for it in result:
 ```
 
 ## 爬取豆瓣top250数据
-```
+```cython
 import requests
 import re
 import csv
@@ -144,7 +144,7 @@ print('over')
 - 拿到页面源代码
 - 使用bs4进行解析， 拿到数据
 
-```
+```cython
 import requests
 from bs4 import BeautifulSoup
 
@@ -179,7 +179,7 @@ for tr in trs:
 1. 安装lxml, pip install lxml
 2. xpath 解析
 
-```
+```cython
 from lxml import etree
 
 
