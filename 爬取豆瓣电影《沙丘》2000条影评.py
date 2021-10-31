@@ -1,18 +1,21 @@
 import requests
 from lxml import etree
 import csv
+import time
+
+
+f = open('豆瓣影评.csv', mode='a+', encoding='utf-8')
+csv_writer = csv.writer(f)
+csv_writer.writerow(["用户名", "评论", "评价", "时间"])
 
 for i in range(0, 100):
+
     url = f'https://movie.douban.com/subject/3001114/comments?start={i}&?limit=20&status=P&sort=new_score'
 
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) \
                                 Chrome/95.0.4638.54 Safari/537.36 Edg/95.0.1020.30"
     }
-
-    f = open('豆瓣影评.csv', mode='a+', encoding='utf-8')
-    csv_writer = csv.writer(f)
-    csv_writer.writerow(["用户名", "评论", "评价", "时间"])
 
     resp = requests.get(url, headers=headers)
     html = etree.HTML(resp.text)
@@ -31,6 +34,7 @@ for i in range(0, 100):
         if len(person) != 0:
             csv_writer.writerow([person, comment, value, time])
 
-    f.close()
-    print("over!!")
+
+f.close()
+print("over!!")
 
