@@ -233,7 +233,7 @@ result = tree.xpath(" /book/author/*/nick/text()")  # *任意的节点，通配�
 </html>
 ```
 
-
+- [使用 lxml 中的 xpath 高效提取文本与标签属性值](https://www.cnblogs.com/hhh5460/p/5079465.html)
 - **示例2**
 ```cython
 from lxml import etree
@@ -248,7 +248,7 @@ ol_li_list = tree.xpath("/html/body/ol/li")
 
 for li in ol_li_list:
     result = li.xpath("./a/text()")  # 在li中继续去查找，相对查找
-    result2 = li.xpath("./a/@href")
+    result2 = li.xpath("./a/@href")  # 提取属性值
 
 ```
 

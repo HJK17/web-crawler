@@ -2,7 +2,6 @@ import requests
 from lxml import etree
 import csv
 
-
 file = open("八戒.csv", "w", encoding='utf-8')
 csv_writer = csv.writer(file)
 csv_writer.writerow(["公司名", "地址", "商品", "价格"])
@@ -25,4 +24,3 @@ for div in divs:
 
 file.close()
 print("完成！！")
-
