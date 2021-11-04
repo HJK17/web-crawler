@@ -1,7 +1,6 @@
 import requests
 from lxml import etree
 import csv
-import time
 
 
 f = open('豆瓣影评.csv', mode='a+', encoding='utf-8')

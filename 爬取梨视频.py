@@ -1,4 +1,6 @@
 import requests
+from lxml import etree
+
 
 url = (input('请输入梨视频的链接：'))
 contId = url.split('_')[1]
@@ -17,8 +19,11 @@ srcUrl = dic['videoInfo']['videos']['srcUrl']
 systemTime = dic['systemTime']
 srcUrl = srcUrl.replace(systemTime, f'cont-{contId}')
 
-name = url.rsplit('/', 1)[1]
-with open(name + '.mp4', mode='wb') as f:
+nameurl = requests.get(url, headers=headers)
+html = etree.HTML(nameurl.text)
+div = html.xpath('/html/body/div[2]/div[1]/div[2]/div/div[1]/h1/text()')[0][0:8] + '... '
+
+with open(div + '.mp4', mode='wb') as f:
     f.write(requests.get(srcUrl).content)
 print('-----over！！！-------')
 
