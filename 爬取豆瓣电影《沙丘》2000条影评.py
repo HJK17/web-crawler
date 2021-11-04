@@ -7,7 +7,7 @@ f = open('豆瓣影评.csv', mode='a+', encoding='utf-8')
 csv_writer = csv.writer(f)
 csv_writer.writerow(["用户名", "评论", "评价", "时间"])
 
-for i in range(0, 100):
+for i in range(0, 1):  # 自定义范围
 
     url = f'https://movie.douban.com/subject/3001114/comments?start={i}&?limit=20&status=P&sort=new_score'
 
